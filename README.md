@@ -10,8 +10,7 @@ To use simply:
 * Import the template file into your templates section within the Zabbix ui.
 * Create a new user on your storage system which Zabbix can use.
 * Then create your host as per mornal but adding the following user macros:
-* {$CABIP1} - this is the IP address of your storage system
-* {$CABPASS} - Password of your new user
-* {$CABUSER} - Username of your new user
+* {$CABIP1} - this is the IP address or the fqdn/hostname of your storage system
+* Setup a SSH Key-Based Authentication in the script execution environment. 
 
 Then execute the 4 discovery rules, which should then populate all the items you need for monitoring.

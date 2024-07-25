@@ -49,7 +49,7 @@
                 <item>
                     <name>ErrorLog</name>
                     <type>EXTERNAL</type>
-                    <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},logerrorall]</key>
+                    <key>v3700_status.sh[{$CABIP1},logerrorall]</key>
                     <delay>86400</delay>
                     <history>1d</history>
                     <trends>0</trends>
@@ -63,7 +63,7 @@
                 <item>
                     <name>Status</name>
                     <type>EXTERNAL</type>
-                    <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},logstatus]</key>
+                    <key>v3700_status.sh[{$CABIP1},logstatus]</key>
                     <delay>86400</delay>
                     <history>1d</history>
                     <trends>0</trends>
@@ -79,14 +79,14 @@
                 <discovery_rule>
                     <name>Discover Arrays</name>
                     <type>EXTERNAL</type>
-                    <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},discoverarrays]</key>
+                    <key>v3700_status.sh[{$CABIP1},discoverarrays]</key>
                     <delay>10m</delay>
                     <lifetime>1d</lifetime>
                     <item_prototypes>
                         <item_prototype>
                             <name>Array {#ARRAY_ID} Status</name>
                             <type>EXTERNAL</type>
-                            <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},lsarray,{#ARRAY_ID}]</key>
+                            <key>v3700_status.sh[{$CABIP1},lsarray,{#ARRAY_ID}]</key>
                             <delay>30</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -109,13 +109,13 @@
                 <discovery_rule>
                     <name>Discover Drives</name>
                     <type>EXTERNAL</type>
-                    <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},discoverdrives]</key>
+                    <key>v3700_status.sh[{$CABIP1},discoverdrives]</key>
                     <delay>10m</delay>
                     <lifetime>1d</lifetime>
                     <item_prototypes>
                         <item_prototype>
                             <name>Drive Status - Enclosure {#ENCLOSURE_ID}, Drive {#DRIVE_ID}</name>
-                            <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},lsdrive,{#DRIVE_ID},{#ENCLOSURE_ID}]</key>
+                            <key>v3700_status.sh[{$CABIP1},lsdrive,{#DRIVE_ID},{#ENCLOSURE_ID}]</key>
                             <trends>0</trends>
                             <value_type>TEXT</value_type>
                             <applications>
@@ -133,7 +133,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Drive Present - Enclosure {#ENCLOSURE_ID}, Drive {#DRIVE_ID}</name>
-                            <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},lsenclosureslotextended,{#DRIVE_ID},{#ENCLOSURE_ID}]</key>
+                            <key>v3700_status.sh[{$CABIP1},lsenclosureslotextended,{#DRIVE_ID},{#ENCLOSURE_ID}]</key>
                             <trends>0</trends>
                             <value_type>TEXT</value_type>
                             <applications>
@@ -154,14 +154,14 @@
                 <discovery_rule>
                     <name>Discover Enclosures</name>
                     <type>EXTERNAL</type>
-                    <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},discoverenclosures]</key>
+                    <key>v3700_status.sh[{$CABIP1},discoverenclosures]</key>
                     <delay>10m</delay>
                     <lifetime>1d</lifetime>
                     <item_prototypes>
                         <item_prototype>
                             <name>Enclosure Status - Enclosure {#ENCLOSURE_ID}</name>
                             <type>EXTERNAL</type>
-                            <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},lsenclosure,{#ENCLOSURE_ID}]</key>
+                            <key>v3700_status.sh[{$CABIP1},lsenclosure,{#ENCLOSURE_ID}]</key>
                             <delay>30</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -182,7 +182,7 @@
                         <item_prototype>
                             <name>Battery Status - Enclosure {#ENCLOSURE_ID}, Battery 1</name>
                             <type>EXTERNAL</type>
-                            <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},lsenclosurebattery,{#ENCLOSURE_ID},1]</key>
+                            <key>v3700_status.sh[{$CABIP1},lsenclosurebattery,{#ENCLOSURE_ID},1]</key>
                             <delay>30</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -203,7 +203,7 @@
                         <item_prototype>
                             <name>Battery Status - Enclosure {#ENCLOSURE_ID}, Battery 2</name>
                             <type>EXTERNAL</type>
-                            <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},lsenclosurebattery,{#ENCLOSURE_ID},2]</key>
+                            <key>v3700_status.sh[{$CABIP1},lsenclosurebattery,{#ENCLOSURE_ID},2]</key>
                             <delay>30</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -224,7 +224,7 @@
                         <item_prototype>
                             <name>Canister Status - Enclosure {#ENCLOSURE_ID}, Canister 1</name>
                             <type>EXTERNAL</type>
-                            <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},lsenclosurecanister,{#ENCLOSURE_ID},1]</key>
+                            <key>v3700_status.sh[{$CABIP1},lsenclosurecanister,{#ENCLOSURE_ID},1]</key>
                             <delay>30</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -245,7 +245,7 @@
                         <item_prototype>
                             <name>Canister Status - Enclosure {#ENCLOSURE_ID}, Canister 2</name>
                             <type>EXTERNAL</type>
-                            <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},lsenclosurecanister,{#ENCLOSURE_ID},2]</key>
+                            <key>v3700_status.sh[{$CABIP1},lsenclosurecanister,{#ENCLOSURE_ID},2]</key>
                             <delay>30</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -266,7 +266,7 @@
                         <item_prototype>
                             <name>PSU Status - Enclosure {#ENCLOSURE_ID}, PSU 1</name>
                             <type>EXTERNAL</type>
-                            <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},lsenclosurepsu,{#ENCLOSURE_ID},1]</key>
+                            <key>v3700_status.sh[{$CABIP1},lsenclosurepsu,{#ENCLOSURE_ID},1]</key>
                             <delay>30</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -287,7 +287,7 @@
                         <item_prototype>
                             <name>PSU Status - Enclosure {#ENCLOSURE_ID}, PSU 2</name>
                             <type>EXTERNAL</type>
-                            <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},lsenclosurepsu,{#ENCLOSURE_ID},2]</key>
+                            <key>v3700_status.sh[{$CABIP1},lsenclosurepsu,{#ENCLOSURE_ID},2]</key>
                             <delay>30</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -310,13 +310,13 @@
                 <discovery_rule>
                     <name>Discover vDisks</name>
                     <type>EXTERNAL</type>
-                    <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},discovervdisks]</key>
+                    <key>v3700_status.sh[{$CABIP1},discovervdisks]</key>
                     <delay>10m</delay>
                     <lifetime>1d</lifetime>
                     <item_prototypes>
                         <item_prototype>
                             <name>vDisk [{#VDISK_NAME}] Status</name>
-                            <key>v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},lsvdisk,{#VDISK_ID}]</key>
+                            <key>v3700_status.sh[{$CABIP1},lsvdisk,{#VDISK_ID}]</key>
                             <delay>30</delay>
                             <trends>0</trends>
                             <value_type>TEXT</value_type>
