@@ -167,7 +167,7 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>9bc0fa4aa1bf4b29be23b2f7ec7f1530</uuid>
-                                    <expression>find(/Template IBM V7000/v3700_status.sh[{$CABIP1},{$CABUSER},{$CABPASS},lsenclosure,{#ENCLOSURE_ID}],,&quot;like&quot;,&quot;degraded&quot;)=1</expression>
+                                    <expression>find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsenclosure,{#ENCLOSURE_ID}],,&quot;like&quot;,&quot;degraded&quot;)=1</expression>
                                     <name>Enclosure Fault on Enclosure {#ENCLOSURE_ID}</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
