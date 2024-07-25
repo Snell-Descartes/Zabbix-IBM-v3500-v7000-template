@@ -1,5 +1,5 @@
-# Zabbix-IBM-v3500-v7000-template
-Use for monitoring of IBM v3500, v3700 and v7000 storage systems within Zabbix.
+# Zabbix-IBM-v3500-v5000-v7000-template
+Use for monitoring of IBM v3500, v3700, v5000 and v7000 storage systems within Zabbix.
 
 Supports multiple enclosures and monitors power supplies, vdisks, arrays, canisters and disks.
 
