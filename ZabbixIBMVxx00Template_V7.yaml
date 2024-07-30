@@ -1,0 +1,227 @@
+zabbix_export:
+  version: '7.0'
+  template_groups:
+    - uuid: 7df96b18c230490a9a0a9e2307226338
+      name: Templates
+  templates:
+    - uuid: 2d9fe0e6d6c5447791493faa98298919
+      template: 'Template IBM V7000'
+      name: 'Template IBM V7000'
+      groups:
+        - name: Templates
+      items:
+        - uuid: 230688357feb442ebf19deaccf932dde
+          name: ErrorLog
+          type: EXTERNAL
+          key: 'v3700_status.sh[{$CABIP1},logerrorall]'
+          delay: '86400'
+          history: 1d
+          value_type: LOG
+          tags:
+            - tag: Application
+              value: Log
+        - uuid: 35b8b582d5f84d37b42f0cefaaa2d3b2
+          name: Status
+          type: EXTERNAL
+          key: 'v3700_status.sh[{$CABIP1},logstatus]'
+          delay: '86400'
+          history: 1d
+          value_type: TEXT
+          tags:
+            - tag: Application
+              value: Resumen
+      discovery_rules:
+        - uuid: 6b71dd0a230744679938b1b1ae9aa793
+          name: 'Discover Arrays'
+          type: EXTERNAL
+          key: 'v3700_status.sh[{$CABIP1},discoverarrays]'
+          delay: 10m
+          lifetime: 1d
+          enabled_lifetime_type: DISABLE_NEVER
+          item_prototypes:
+            - uuid: d4ae9c6b2d5e43f6a6174ba915420888
+              name: 'Array {#ARRAY_ID} Status'
+              type: EXTERNAL
+              key: 'v3700_status.sh[{$CABIP1},lsarray,{#ARRAY_ID}]'
+              delay: 5m
+              history: 1d
+              value_type: TEXT
+              tags:
+                - tag: Application
+                  value: Array
+              trigger_prototypes:
+                - uuid: d0c8f632f7014670a5611750a9a3844c
+                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsarray,{#ARRAY_ID}],,"like","degraded")=1'
+                  name: 'Array {#ARRAY_ID} Fault'
+                  priority: HIGH
+        - uuid: 1bf86775577340469d3733438a5b7185
+          name: 'Discover Drives'
+          type: EXTERNAL
+          key: 'v3700_status.sh[{$CABIP1},discoverdrives]'
+          delay: 10m
+          lifetime: 1d
+          enabled_lifetime_type: DISABLE_NEVER
+          item_prototypes:
+            - uuid: a4792864579d4bd294a3e5c2161f9da6
+              name: 'Drive Status - Enclosure {#ENCLOSURE_ID}, Slot {#SLOT_ID}, Drive {#DRIVE_ID}, Mdisk {#MDISK_ID}'
+              type: EXTERNAL
+              key: 'v3700_status.sh[{$CABIP1},lsdrive,{#ENCLOSURE_ID},{#DRIVE_ID}]'
+              delay: 10m
+              value_type: TEXT
+              tags:
+                - tag: Application
+                  value: Disks
+              trigger_prototypes:
+                - uuid: 894cd02579d441af9e5e3770c2bd72d9
+                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsdrive,{#ENCLOSURE_ID},{#DRIVE_ID}],,"like","degraded")=1'
+                  name: 'Drive Failure - Enclosure {#ENCLOSURE_ID}, Slot {#SLOT_ID}, Drive {#DRIVE_ID}, Mdisk {#MDISK_ID}'
+                  priority: HIGH
+            - uuid: 6397d1f84f454384a6267b2a0c31379c
+              name: 'Drive Present - Enclosure {#ENCLOSURE_ID}, Slot {#SLOT_ID}, Drive {#DRIVE_ID}, Mdisk {#MDISK_ID}'
+              type: EXTERNAL
+              key: 'v3700_status.sh[{$CABIP1},lsenclosureslotextended,{#SLOT_ID},{#ENCLOSURE_ID}]'
+              delay: 10m
+              value_type: TEXT
+              tags:
+                - tag: Application
+                  value: Disks
+              trigger_prototypes:
+                - uuid: 0762c2401cc2463d9353356170e33421
+                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsenclosureslotextended,{#SLOT_ID},{#ENCLOSURE_ID}],,"like","no")=1'
+                  name: 'Drive not present - Enclosure {#ENCLOSURE_ID}, Slot {#SLOT_ID}, Drive {#DRIVE_ID}, Mdisk {#MDISK_ID}'
+                  priority: HIGH
+        - uuid: ff6ab394bcd049bca1e0564c51d3636f
+          name: 'Discover Enclosures'
+          type: EXTERNAL
+          key: 'v3700_status.sh[{$CABIP1},discoverenclosures]'
+          delay: 10m
+          lifetime: 1d
+          enabled_lifetime_type: DISABLE_NEVER
+          item_prototypes:
+            - uuid: 7729329da8f642fc91820634d229c97a
+              name: 'Enclosure Status - Enclosure {#ENCLOSURE_ID}'
+              type: EXTERNAL
+              key: 'v3700_status.sh[{$CABIP1},lsenclosure,{#ENCLOSURE_ID}]'
+              delay: 5m
+              history: 1d
+              value_type: TEXT
+              tags:
+                - tag: Application
+                  value: Enclosure
+              trigger_prototypes:
+                - uuid: 9bc0fa4aa1bf4b29be23b2f7ec7f1530
+                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsenclosure,{#ENCLOSURE_ID}],,"like","degraded")=1'
+                  name: 'Enclosure Fault on Enclosure {#ENCLOSURE_ID}'
+                  priority: HIGH
+            - uuid: d1fcc3f058cb4d83a6b8889f5386be21
+              name: 'Battery Status - Enclosure {#ENCLOSURE_ID}, Battery 1'
+              type: EXTERNAL
+              key: 'v3700_status.sh[{$CABIP1},lsenclosurebattery,{#ENCLOSURE_ID},1]'
+              delay: 5m
+              history: 1d
+              value_type: TEXT
+              tags:
+                - tag: Application
+                  value: Batteries
+              trigger_prototypes:
+                - uuid: 323c5604190048d7bf06e320d9ab8c31
+                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsenclosurebattery,{#ENCLOSURE_ID},1],,"like","offline")=1'
+                  name: 'Battery 1 Failure on Enclosure {#ENCLOSURE_ID}'
+                  priority: HIGH
+            - uuid: ba6d4afcb2e940e292af9e383433e870
+              name: 'Battery Status - Enclosure {#ENCLOSURE_ID}, Battery 2'
+              type: EXTERNAL
+              key: 'v3700_status.sh[{$CABIP1},lsenclosurebattery,{#ENCLOSURE_ID},2]'
+              delay: 5m
+              history: 1d
+              value_type: TEXT
+              tags:
+                - tag: Application
+                  value: Batteries
+              trigger_prototypes:
+                - uuid: 920c32a65af64816852ff1ba39938975
+                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsenclosurebattery,{#ENCLOSURE_ID},2],,"like","offline")=1'
+                  name: 'Battery 2 Failure on Enclosure {#ENCLOSURE_ID}'
+                  priority: HIGH
+            - uuid: d24b2d8de6c1479c85e90acd4729a399
+              name: 'Canister Status - Enclosure {#ENCLOSURE_ID}, Canister 1'
+              type: EXTERNAL
+              key: 'v3700_status.sh[{$CABIP1},lsenclosurecanister,{#ENCLOSURE_ID},1]'
+              delay: 5m
+              history: 1d
+              value_type: TEXT
+              tags:
+                - tag: Application
+                  value: Enclosure
+              trigger_prototypes:
+                - uuid: be0007de276748eeb892b522cc75a9e2
+                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsenclosurecanister,{#ENCLOSURE_ID},1],,"like","offline")=1'
+                  name: 'Canister 1 Failure on Enclosure {#ENCLOSURE_ID}'
+                  priority: HIGH
+            - uuid: 68654026acf242f3bb49db277f7788e9
+              name: 'Canister Status - Enclosure {#ENCLOSURE_ID}, Canister 2'
+              type: EXTERNAL
+              key: 'v3700_status.sh[{$CABIP1},lsenclosurecanister,{#ENCLOSURE_ID},2]'
+              delay: 5m
+              history: 1d
+              value_type: TEXT
+              tags:
+                - tag: Application
+                  value: Enclosure
+              trigger_prototypes:
+                - uuid: 71034ff07bc2464cb77995e586f17a48
+                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsenclosurecanister,{#ENCLOSURE_ID},2],,"like","offline")=1'
+                  name: 'Canister 2 Failure on Enclosure {#ENCLOSURE_ID}'
+                  priority: HIGH
+            - uuid: 1f1cf5161dc447ad9dd937aca65dfa3d
+              name: 'PSU Status - Enclosure {#ENCLOSURE_ID}, PSU 1'
+              type: EXTERNAL
+              key: 'v3700_status.sh[{$CABIP1},lsenclosurepsu,{#ENCLOSURE_ID},1]'
+              delay: 5m
+              history: 1d
+              value_type: TEXT
+              tags:
+                - tag: Application
+                  value: PSU
+              trigger_prototypes:
+                - uuid: e5304b4ca598418db712906da24b6ce7
+                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsenclosurepsu,{#ENCLOSURE_ID},1],,"like","offline")=1'
+                  name: 'PSU 1 Failure on Enclosure {#ENCLOSURE_ID}'
+                  priority: HIGH
+            - uuid: dd6d68772a284021a1a1e59ded621c07
+              name: 'PSU Status - Enclosure {#ENCLOSURE_ID}, PSU 2'
+              type: EXTERNAL
+              key: 'v3700_status.sh[{$CABIP1},lsenclosurepsu,{#ENCLOSURE_ID},2]'
+              delay: 5m
+              history: 1d
+              value_type: TEXT
+              tags:
+                - tag: Application
+                  value: PSU
+              trigger_prototypes:
+                - uuid: 25031467092b4d9d851fc5c101070ee5
+                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsenclosurepsu,{#ENCLOSURE_ID},2],,"like","offline")=1'
+                  name: 'PSU 2 Failure on Enclosure {#ENCLOSURE_ID}'
+                  priority: HIGH
+        - uuid: f24df71d4f3b41f6a12342ddcf3bf194
+          name: 'Discover vDisks'
+          type: EXTERNAL
+          key: 'v3700_status.sh[{$CABIP1},discovervdisks]'
+          delay: 10m
+          lifetime: 1d
+          enabled_lifetime_type: DISABLE_NEVER
+          item_prototypes:
+            - uuid: 82de2da3d8cb42b0bc69103c0a132125
+              name: 'vDisk [{#VDISK_NAME}] Status'
+              type: EXTERNAL
+              key: 'v3700_status.sh[{$CABIP1},lsvdisk,{#VDISK_ID}]'
+              delay: 5m
+              value_type: TEXT
+              tags:
+                - tag: Application
+                  value: VDisk
+              trigger_prototypes:
+                - uuid: acdfce532105475d8c43afb689f14aa6
+                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsvdisk,{#VDISK_ID}],,"like","degraded")=1'
+                  name: 'vDisk {#VDISK_NAME} Fault'
+                  priority: HIGH
