@@ -66,7 +66,7 @@ if [[ $2 == 'discoverdrives' ]]; then
       if [[ $count>0 ]]; then
         echo ","
       fi
-      printf "{\"{#ENCLOSURE_ID}\":\"${fields[9]}\", \"{#DRIVE_ID}\":\"${fields[10]}\"}"
+      printf "{\"{#ENCLOSURE_ID}\":\"${fields[9]}\", \"{#DRIVE_ID}\":\"${fields[0]}\", \"{#SLOT_ID}\":\"${fields[10]}\", \"{#MDISK_ID}\":\"${fields[6]}\"}"
       count=$((count+1))
     done <<< "$line"
   done
