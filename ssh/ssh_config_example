@@ -1,0 +1,9 @@
+Host v5000host1 hostname1.domain.com
+    HostName hostname1.domain.com
+    User username
+    IdentityFile /var/lib/zabbix/ssh_keys/id_rsa
+
+Host v5000host2 hostname2.domain.com
+    HostName hostname2.domain.com
+    User username
+    IdentityFile /var/lib/zabbix/ssh_keys/id_rsa
