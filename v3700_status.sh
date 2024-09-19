@@ -234,6 +234,12 @@ if [[ $2 == 'logerrorall' ]]; then
   echo "$RESULT"
 fi
 
+if [[ $2 == 'check_portip' ]]; then
+  BUSCA=$3
+  RESULT=$(ssh -F /var/lib/zabbix/ssh_keys/config -o StrictHostKeyChecking=no $1 "( lsportip -filtervalue 'node_id=$3' -delim='|' -nohdr )" )
+  echo "$RESULT" | cut -d "|" -f 15 | grep "^active" | wc -l
+fi
+
 # logstatus -> state of all paramaters
 if [[ $2 == 'logstatus' ]]; then
 
