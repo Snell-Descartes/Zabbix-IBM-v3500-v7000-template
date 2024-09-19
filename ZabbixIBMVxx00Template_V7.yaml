@@ -185,7 +185,7 @@ zabbix_export:
                   value: PSU
               trigger_prototypes:
                 - uuid: e5304b4ca598418db712906da24b6ce7
-                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsenclosurepsu,{#ENCLOSURE_ID},1],,"like","offline")=1'
+                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsenclosurepsu,{#ENCLOSURE_ID},1],,"like","online")=0'
                   name: 'PSU 1 Failure on Enclosure {#ENCLOSURE_ID}'
                   priority: HIGH
             - uuid: dd6d68772a284021a1a1e59ded621c07
@@ -200,7 +200,7 @@ zabbix_export:
                   value: PSU
               trigger_prototypes:
                 - uuid: 25031467092b4d9d851fc5c101070ee5
-                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsenclosurepsu,{#ENCLOSURE_ID},2],,"like","offline")=1'
+                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsenclosurepsu,{#ENCLOSURE_ID},2],,"like","online")=0'
                   name: 'PSU 2 Failure on Enclosure {#ENCLOSURE_ID}'
                   priority: HIGH
         - uuid: f24df71d4f3b41f6a12342ddcf3bf194
