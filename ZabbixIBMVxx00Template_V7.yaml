@@ -17,6 +17,7 @@ zabbix_export:
           delay: '86400'
           history: 1d
           value_type: LOG
+          trends: '0'
           tags:
             - tag: Application
               value: Log
@@ -27,6 +28,7 @@ zabbix_export:
           delay: '86400'
           history: 1d
           value_type: TEXT
+          trends: '0'
           tags:
             - tag: Application
               value: Resumen
@@ -46,6 +48,7 @@ zabbix_export:
               delay: 5m
               history: 1d
               value_type: TEXT
+              trends: '0'
               tags:
                 - tag: Application
                   value: Array
@@ -68,6 +71,7 @@ zabbix_export:
               key: 'v3700_status.sh[{$CABIP1},lsdrive,{#ENCLOSURE_ID},{#DRIVE_ID}]'
               delay: 10m
               value_type: TEXT
+              trends: '0'
               tags:
                 - tag: Application
                   value: Disks
@@ -82,6 +86,7 @@ zabbix_export:
               key: 'v3700_status.sh[{$CABIP1},lsenclosureslotextended,{#SLOT_ID},{#ENCLOSURE_ID}]'
               delay: 10m
               value_type: TEXT
+              trends: '0'
               tags:
                 - tag: Application
                   value: Disks
@@ -105,6 +110,7 @@ zabbix_export:
               delay: 5m
               history: 1d
               value_type: TEXT
+              trends: '0'
               tags:
                 - tag: Application
                   value: Enclosure
@@ -120,6 +126,7 @@ zabbix_export:
               delay: 5m
               history: 1d
               value_type: TEXT
+              trends: '0'
               tags:
                 - tag: Application
                   value: Batteries
@@ -135,6 +142,7 @@ zabbix_export:
               delay: 5m
               history: 1d
               value_type: TEXT
+              trends: '0'
               tags:
                 - tag: Application
                   value: Batteries
@@ -150,6 +158,7 @@ zabbix_export:
               delay: 5m
               history: 1d
               value_type: TEXT
+              trends: '0'
               tags:
                 - tag: Application
                   value: Enclosure
@@ -165,6 +174,7 @@ zabbix_export:
               delay: 5m
               history: 1d
               value_type: TEXT
+              trends: '0'
               tags:
                 - tag: Application
                   value: Enclosure
@@ -180,6 +190,7 @@ zabbix_export:
               delay: 5m
               history: 1d
               value_type: TEXT
+              trends: '0'
               tags:
                 - tag: Application
                   value: PSU
@@ -195,6 +206,7 @@ zabbix_export:
               delay: 5m
               history: 1d
               value_type: TEXT
+              trends: '0'
               tags:
                 - tag: Application
                   value: PSU
@@ -217,6 +229,7 @@ zabbix_export:
               key: 'v3700_status.sh[{$CABIP1},lsvdisk,{#VDISK_ID}]'
               delay: 5m
               value_type: TEXT
+              trends: '0'
               tags:
                 - tag: Application
                   value: VDisk
