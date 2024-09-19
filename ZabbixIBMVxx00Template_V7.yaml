@@ -73,7 +73,7 @@ zabbix_export:
                   value: Disks
               trigger_prototypes:
                 - uuid: 894cd02579d441af9e5e3770c2bd72d9
-                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsdrive,{#ENCLOSURE_ID},{#DRIVE_ID}],,"like","degraded")=1'
+                  expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsdrive,{#ENCLOSURE_ID},{#DRIVE_ID}],,"like","offline")=1'
                   name: 'Drive Failure - Enclosure {#ENCLOSURE_ID}, Slot {#SLOT_ID}, Drive {#DRIVE_ID}, Mdisk {#MDISK_ID}'
                   priority: HIGH
             - uuid: 6397d1f84f454384a6267b2a0c31379c
