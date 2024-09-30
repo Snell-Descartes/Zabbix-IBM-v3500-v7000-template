@@ -45,7 +45,7 @@ zabbix_export:
               name: 'Array {#ARRAY_ID} Status'
               type: EXTERNAL
               key: 'v3700_status.sh[{$CABIP1},lsarray,{#ARRAY_ID}]'
-              delay: '10'
+              delay: '10m'
               history: 1d
               value_type: TEXT
               trends: '0'
