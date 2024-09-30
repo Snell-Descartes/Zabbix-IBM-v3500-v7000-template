@@ -45,7 +45,7 @@ zabbix_export:
               name: 'Array {#ARRAY_ID} Status'
               type: EXTERNAL
               key: 'v3700_status.sh[{$CABIP1},lsarray,{#ARRAY_ID}]'
-              delay: 5m
+              delay: '10m'
               history: 1d
               value_type: TEXT
               trends: '0'
@@ -69,7 +69,7 @@ zabbix_export:
               name: 'Drive Status - Enclosure {#ENCLOSURE_ID}, Slot {#SLOT_ID}, Drive {#DRIVE_ID}, Mdisk {#MDISK_ID}'
               type: EXTERNAL
               key: 'v3700_status.sh[{$CABIP1},lsdrive,{#ENCLOSURE_ID},{#DRIVE_ID}]'
-              delay: 10m
+              delay: 45m
               value_type: TEXT
               trends: '0'
               tags:
@@ -84,9 +84,11 @@ zabbix_export:
               name: 'Drive Present - Enclosure {#ENCLOSURE_ID}, Slot {#SLOT_ID}, Drive {#DRIVE_ID}, Mdisk {#MDISK_ID}'
               type: EXTERNAL
               key: 'v3700_status.sh[{$CABIP1},lsenclosureslotextended,{#SLOT_ID},{#ENCLOSURE_ID}]'
-              delay: 10m
+              delay: 2h
               value_type: TEXT
               trends: '0'
+              status: DISABLED
+              discover: NO_DISCOVER
               tags:
                 - tag: Application
                   value: Disks
@@ -94,6 +96,8 @@ zabbix_export:
                 - uuid: 0762c2401cc2463d9353356170e33421
                   expression: 'find(/Template IBM V7000/v3700_status.sh[{$CABIP1},lsenclosureslotextended,{#SLOT_ID},{#ENCLOSURE_ID}],,"like","no")=1'
                   name: 'Drive not present - Enclosure {#ENCLOSURE_ID}, Slot {#SLOT_ID}, Drive {#DRIVE_ID}, Mdisk {#MDISK_ID}'
+                  status: DISABLED
+                  discover: NO_DISCOVER
                   priority: HIGH
         - uuid: ff6ab394bcd049bca1e0564c51d3636f
           name: 'Discover Enclosures'
@@ -107,7 +111,7 @@ zabbix_export:
               name: 'Enclosure Status - Enclosure {#ENCLOSURE_ID}'
               type: EXTERNAL
               key: 'v3700_status.sh[{$CABIP1},lsenclosure,{#ENCLOSURE_ID}]'
-              delay: 5m
+              delay: 25m
               history: 1d
               value_type: TEXT
               trends: '0'
@@ -123,7 +127,7 @@ zabbix_export:
               name: 'Battery Status - Enclosure {#ENCLOSURE_ID}, Battery 1'
               type: EXTERNAL
               key: 'v3700_status.sh[{$CABIP1},lsenclosurebattery,{#ENCLOSURE_ID},1]'
-              delay: 5m
+              delay: 25m
               history: 1d
               value_type: TEXT
               trends: '0'
@@ -139,7 +143,7 @@ zabbix_export:
               name: 'Battery Status - Enclosure {#ENCLOSURE_ID}, Battery 2'
               type: EXTERNAL
               key: 'v3700_status.sh[{$CABIP1},lsenclosurebattery,{#ENCLOSURE_ID},2]'
-              delay: 5m
+              delay: 25m
               history: 1d
               value_type: TEXT
               trends: '0'
@@ -155,7 +159,7 @@ zabbix_export:
               name: 'Canister Status - Enclosure {#ENCLOSURE_ID}, Canister 1'
               type: EXTERNAL
               key: 'v3700_status.sh[{$CABIP1},lsenclosurecanister,{#ENCLOSURE_ID},1]'
-              delay: 5m
+              delay: 25m
               history: 1d
               value_type: TEXT
               trends: '0'
@@ -171,7 +175,7 @@ zabbix_export:
               name: 'Canister Status - Enclosure {#ENCLOSURE_ID}, Canister 2'
               type: EXTERNAL
               key: 'v3700_status.sh[{$CABIP1},lsenclosurecanister,{#ENCLOSURE_ID},2]'
-              delay: 5m
+              delay: 25m
               history: 1d
               value_type: TEXT
               trends: '0'
@@ -187,7 +191,7 @@ zabbix_export:
               name: 'PSU Status - Enclosure {#ENCLOSURE_ID}, PSU 1'
               type: EXTERNAL
               key: 'v3700_status.sh[{$CABIP1},lsenclosurepsu,{#ENCLOSURE_ID},1]'
-              delay: 5m
+              delay: 35m
               history: 1d
               value_type: TEXT
               trends: '0'
@@ -203,7 +207,7 @@ zabbix_export:
               name: 'PSU Status - Enclosure {#ENCLOSURE_ID}, PSU 2'
               type: EXTERNAL
               key: 'v3700_status.sh[{$CABIP1},lsenclosurepsu,{#ENCLOSURE_ID},2]'
-              delay: 5m
+              delay: 35m
               history: 1d
               value_type: TEXT
               trends: '0'
@@ -227,7 +231,7 @@ zabbix_export:
               name: 'vDisk [{#VDISK_NAME}] Status'
               type: EXTERNAL
               key: 'v3700_status.sh[{$CABIP1},lsvdisk,{#VDISK_ID}]'
-              delay: 5m
+              delay: 15m
               value_type: TEXT
               trends: '0'
               tags:
